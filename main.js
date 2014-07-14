@@ -12,6 +12,19 @@ var PeopleCollection = Backbone.Collection.extend({
   model: Person
 });
 
+var PeopleView = Backbone.View.extend ({
+
+	tagName: "ul",
+
+	render: function(){
+      this.collection.each(function(person){
+          var personView = new PersonView({ model: person });
+          this.$el.append(personView.el); // adding all the person objects.
+      }, this);
+  }
+
+});
+
 // The View for a Person
 var PersonView = Backbone.View.extend({
   tagName: 'li',
@@ -43,3 +56,4 @@ var peopleCollection = new PeopleCollection([
       occupation: 'Java Developer'
   }
 ]);
+
